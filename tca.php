@@ -35,7 +35,6 @@
 				'config' => Array (
 					'type' => 'input',
 					'size' => '30',
-					'eval' => 'int',
 				)
 			),
 			'height' => Array (
@@ -44,7 +43,6 @@
 				'config' => Array (
 					'type' => 'input',
 					'size' => '30',
-					'eval' => 'int',
 				)
 			),
 			'quality' => Array (
