@@ -107,7 +107,11 @@
 			}
 
 			// If configuration via TypoScript is provided, merge the arrays
-			if (is_array($conf)) { $movieConf = t3lib_div::array_merge_recursive_overrule ($recordConf,$conf); }
+			if (is_array($conf)) {
+				$movieConf = t3lib_div::array_merge_recursive_overrule($recordConf, $conf); 
+				// Adding stdWrap to xmlfile option
+				$movieConf['conf.']['xmlfile'] = $this->cObj->stdWrap($movieConf['conf.']['xmlfile'],$movieConf['conf.']['xmlfile.']);
+			}
 
 			// Get HTML code which embeds the selected movie record
 			if (is_array($movieConf['conf.'])) { $content = $this->getFlashHTMLCode($movieConf); }
