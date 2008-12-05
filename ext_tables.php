@@ -24,6 +24,8 @@
 			'tstamp' => 'tstamp',
 			'crdate' => 'crdate',
 			'cruser_id' => 'cruser_id',
+			'versioningWS' => TRUE, 
+        	'origUid' => 't3_origuid',
 			'default_sortby' => 'ORDER BY description',
 			'thumbnail' => 'flashmovie',
 			'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY)."tca.php",

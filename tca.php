@@ -11,6 +11,14 @@
 		),
 		'feInterface' => $TCA['tx_rlmpflashdetection_flashmovie']['feInterface'],
 		'columns' => Array (
+			't3ver_label' => array (        
+	            'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
+	            'config' => array (
+	                'type' => 'input',
+	                'size' => '30',
+	                'max'  => '30',
+	            )
+	        ),
 			'description' => Array (
 				'exclude' => 1,
 				'label' => 'LLL:EXT:rlmp_flashdetection/locallang_db.php:tx_rlmpflashdetection_flashmovie.description',

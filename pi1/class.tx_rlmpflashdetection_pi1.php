@@ -58,8 +58,11 @@
 			$uid = $this->cObj->data['tx_rlmpflashdetection_flashmovie']?$this->cObj->data['tx_rlmpflashdetection_flashmovie']:$conf['conf.']['overrideUID'];
 
 			// Read configuration from flash record
-			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_rlmpflashdetection_flashmovie', 'uid = '.intval($uid).$this->cObj->enableFields('tx_rlmpflashdetection_flashmovie'));
+			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_rlmpflashdetection_flashmovie', 't3ver_state!=1 AND uid = '.intval($uid).$this->cObj->enableFields('tx_rlmpflashdetection_flashmovie'));
 			$recordConf['conf.'] = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
+			
+			// Versioning - TODO: Ersetzen durch getWhere
+			$GLOBALS['TSFE']->sys_page->versionOL('tx_rlmpflashdetection_flashmovie', $recordConf['conf.']);
 
 			// Load TCA to check if file referneces are used ...
 			t3lib_div::loadTCA('tx_rlmpflashdetection_flashmovie');
