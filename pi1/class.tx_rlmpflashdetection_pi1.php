@@ -60,25 +60,25 @@
 			// Read configuration from flash record
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_rlmpflashdetection_flashmovie', 't3ver_state!=1 AND uid = '.intval($uid).$this->cObj->enableFields('tx_rlmpflashdetection_flashmovie'));
 			$recordConf['conf.'] = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
-			
+
 			// Versioning - TODO: Ersetzen durch getWhere
 			$GLOBALS['TSFE']->sys_page->versionOL('tx_rlmpflashdetection_flashmovie', $recordConf['conf.']);
 
 			// Load TCA to check if file referneces are used ...
 			t3lib_div::loadTCA('tx_rlmpflashdetection_flashmovie');
 			$config = $GLOBALS['TCA']['tx_rlmpflashdetection_flashmovie'];
-			
+
 			// Use file references to files or prepend the filenames with upload path
 			if ($config['columns']['flashmovie']['config']['uploadfolder']) {
 				$recordFolder = $config['columns']['flashmovie']['config']['uploadfolder'].'/';
 			} else {
 				$recordFolder = '';
 			}
-			
+
 			// Flash file
 			if ($recordConf['conf.']['flashmovie'])	{
 				$file = $recordFolder.$recordConf['conf.']['flashmovie'];
-				// Bugfix for absolut paths 
+				// Bugfix for absolut paths
 				if (strstr($file, 'fileadmin/')) {
 					list(,$file) = explode('fileadmin/', $file);
 					$file = 'fileadmin/'.$file;
@@ -86,22 +86,22 @@
 				$this->basePath = dirname($file).'/';
 				$recordConf['conf.']['flashmovie'] = $file;
 			}
-			
+
 			// XML file
 			if ($recordConf['conf.']['xmlfile'])	{
 				$file = $recordFolder.$recordConf['conf.']['xmlfile'];
-				// Bugfix for absolut paths 
+				// Bugfix for absolut paths
 				if (strstr($file, 'fileadmin/')) {
 					list(,$file) = explode('fileadmin/', $file);
 					$file = 'fileadmin/'.$file;
 				}
 				$recordConf['conf.']['xmlfile'] = $file;
 			}
-			
+
 			// Alternative image
 			if ($recordConf['conf.']['alternatepic'])	{
 				$file = $recordFolder.$recordConf['conf.']['alternatepic'];
-				// Bugfix for absolut paths 
+				// Bugfix for absolut paths
 				if (strstr($file, 'fileadmin/')) {
 					list(,$file) = explode('fileadmin/', $file);
 					$file = 'fileadmin/'.$file;
@@ -111,9 +111,12 @@
 
 			// If configuration via TypoScript is provided, merge the arrays
 			if (is_array($conf)) {
-				$movieConf = t3lib_div::array_merge_recursive_overrule($recordConf, $conf); 
-				// Adding stdWrap to xmlfile option
-				$movieConf['conf.']['xmlfile'] = $this->cObj->stdWrap($movieConf['conf.']['xmlfile'],$movieConf['conf.']['xmlfile.']);
+				$movieConf = t3lib_div::array_merge_recursive_overrule($recordConf, $conf);
+				$stdWrap = array('description','requiresflashversion','width','height','quality','displaymenu','flashloop','alternatepic','alternatelink','alternatetext','flashmovie','additionalparams','xmlfile');
+				// Adding stdWrap to all options
+				foreach ($stdWrap as $parameter) {
+					$movieConf['conf.'][$parameter] = $this->cObj->stdWrap($movieConf['conf.'][$parameter],$movieConf['conf.'][$parameter.'.']);
+				}
 			}
 
 			// Get HTML code which embeds the selected movie record
