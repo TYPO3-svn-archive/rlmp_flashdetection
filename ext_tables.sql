@@ -28,7 +28,7 @@ CREATE TABLE tx_rlmpflashdetection_flashmovie (
 	hidden tinyint(4) DEFAULT '0' NOT NULL,
 	starttime int(11) DEFAULT '0' NOT NULL,
 	endtime int(11) DEFAULT '0' NOT NULL,
-	description varchar(100) NOT NULL,
+	description varchar(100) DEFAULT '' NOT NULL,
 	requiresflashversion tinyint(4) DEFAULT '0' NOT NULL,
 	width varchar(6) DEFAULT '' NOT NULL,
 	height varchar(6) DEFAULT '' NOT NULL,

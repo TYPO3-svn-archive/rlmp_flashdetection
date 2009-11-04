@@ -53,9 +53,16 @@
 			$this->pi_setPiVarDefaults();
 			$this->pi_loadLL();
 
+			// Enable stdWrap for overrideUID
+			if ($conf['conf.']['overrideUID.']) {
+				$overrideUID = $this->cObj->stdWrap($conf['conf.']['overrideUID'],$conf['conf.']['overrideUID.']);
+			} else {
+				$overrideUID = false;
+			}
+	
 			// Normally we want to get the record of the flashmovie which is selected in the insert plugin content element.
 			// But you may define an uid in your template which overrides this selection.
-			$uid = $this->cObj->data['tx_rlmpflashdetection_flashmovie']?$this->cObj->data['tx_rlmpflashdetection_flashmovie']:$conf['conf.']['overrideUID'];
+			$uid = $this->cObj->data['tx_rlmpflashdetection_flashmovie']?$this->cObj->data['tx_rlmpflashdetection_flashmovie']:$overrideUID;
 
 			// Read configuration from flash record
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_rlmpflashdetection_flashmovie', 't3ver_state!=1 AND uid = '.intval($uid).$this->cObj->enableFields('tx_rlmpflashdetection_flashmovie'));
@@ -196,7 +203,8 @@
 				// -->
 					/*]]>*/
 				</script>
-				<noscript>'.$alternateImage.'</noscript>
+				<noscript><div>'.$alternateImage.'</div></noscript>
+
 			';
 			// return
 			return $flash;
