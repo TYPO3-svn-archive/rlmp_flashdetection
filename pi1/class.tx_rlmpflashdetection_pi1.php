@@ -55,9 +55,9 @@
 
 			// Enable stdWrap for overrideUID
 			if ($conf['conf.']['overrideUID.']) {
-				$overrideUID = $this->cObj->stdWrap($conf['conf.']['overrideUID'],$conf['conf.']['overrideUID.']);
+				$overrideUID = $this->cObj->stdWrap($conf['conf.']['overrideUID'], $conf['conf.']['overrideUID.']);
 			} else {
-				$overrideUID = false;
+				$overrideUID = $conf['conf.']['overrideUID'];
 			}
 	
 			// Normally we want to get the record of the flashmovie which is selected in the insert plugin content element.
