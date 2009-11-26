@@ -2,10 +2,20 @@ plugin.tx_rlmpflashdetection_pi1 {
 	general {
 		allowScriptAccess = sameDomain
 		codeBase = http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab
-		pluginsPage = http://www.adobe.com/go/getflashplayer
+		pluginsPage = http://get.adobe.com/de/flashplayer/
 		xmlFileFlashParamName = xurl
 	}
 	conf {
 
 	}
 }
+
+# Prevent IE security alert while browsing a secure site
+# See http://kb2.adobe.com/cps/165/tn_16588.html
+[globalString = IENV:TYPO3_SITE_URL=/https.*/]
+	plugin.tx_rlmpflashdetection_pi1 {
+		general {
+			codeBase = https://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab
+		}
+	}
+[global]
