@@ -119,7 +119,7 @@
 			// If configuration via TypoScript is provided, merge the arrays
 			if (is_array($conf)) {
 				$movieConf = t3lib_div::array_merge_recursive_overrule($recordConf, $conf);
-				$stdWrap = array('description','requiresflashversion','width','height','quality','displaymenu','flashloop','alternatepic','alternatelink','alternatetext','flashmovie','additionalparams','xmlfile');
+				$stdWrap = array('description','requiresflashversion','overlaydiv','width','height','quality','displaymenu','flashloop','alternatepic','alternatelink','alternatetext','flashmovie','additionalparams','xmlfile');
 				// Adding stdWrap to all options
 				foreach ($stdWrap as $parameter) {
 					$movieConf['conf.'][$parameter] = $this->cObj->stdWrap($movieConf['conf.'][$parameter],$movieConf['conf.'][$parameter.'.']);
@@ -172,16 +172,20 @@
 			}
 
 			// Include Adobe Flash Player Version Detection
-			$GLOBALS['TSFE']->additionalHeaderData ['tx_rlmpflashdetection'] = '<script type="text/JavaScript" src="'.t3lib_extMgm::siteRelPath("rlmp_flashdetection").'res/AC_OETags.js"></script>';
+//			$GLOBALS['TSFE']->additionalHeaderData ['tx_rlmpflashdetection'] = '<script type="text/JavaScript" src="'.t3lib_extMgm::siteRelPath("rlmp_flashdetection").'res/AC_OETags.js"></script>';
 
-			// Create the flash stuff
-			$flash = '
+			// CDATA declaration for "normal" mode - unset declartion when extension is called by AJAX to beware javascript errors in IE! 
+			$arrCDATA = array('/*<![CDATA[*/'.chr(10).'<!--', '//-->'.chr(10).'/*]]>*/');
+
+			// Create output
+			$content = '
 				<script type="text/javascript">
-					/*<![CDATA[*/
-				<!--
+					'.($conf['conf.']['overlaydiv']==''?$arrCDATA[0]:'').'
+					'.$this->cObj->fileResource(t3lib_extMgm::siteRelPath('rlmp_flashdetection').'res/AC_OETags.js').'
+					var hasOverlayDiv	= "'.$conf['conf.']['overlaydiv'].'";
 					var hasRightVersion = DetectFlashVer('.$conf['conf.']['requiresflashversion'].', 0, 0);
-					if (hasRightVersion && "'.htmlspecialchars(preg_replace('/\.swf$/','',$conf['conf.']['flashmovie'])).'"!="") {  // if we\'ve detected an acceptable version and if a Flash movie was defined
-						AC_FL_RunContent(
+					if (hasRightVersion && "'.htmlspecialchars(preg_replace('/\.swf$/','',$conf['conf.']['flashmovie'])).'"!="") {
+						var flashContent = AC_FL_RunContent (
 							"movie", "'.htmlspecialchars(preg_replace('/\.swf$/','',$conf['conf.']['flashmovie'])).'",
 							"width", "'. ($conf['conf.']['width']?htmlspecialchars($conf['conf.']['width']):'400').'",
 							"height", "'.($conf['conf.']['height']?htmlspecialchars($conf['conf.']['height']):'300').'",
@@ -196,18 +200,26 @@
 							"codebase", "'.htmlspecialchars($conf['general.']['codeBase']).'",
 							"pluginspage", "'.htmlspecialchars($conf['general.']['pluginsPage']).'"
 						);
-					} else {  // flash is to old or we can\'t detect the plugin
+						if (hasOverlayDiv) document.getElementById("tx-rlmpflashdetection-pi1").innerHTML = flashContent;
+							else document.write(flashContent);
+					} else {
 						var alternateContent = \''.str_replace(array('</',"'"), array('<\/',"\\'"), $alternateImage).'\';
-						document.write(alternateContent);  // insert non-flash content
+						if (hasOverlayDiv) document.getElementById("tx-rlmpflashdetection-pi1").innerHTML = alternateContent;
+							else document.write(alternateContent);
 					}
-				// -->
-					/*]]>*/
+				'.($conf['conf.']['overlaydiv']==''?$arrCDATA[1]:'').'
 				</script>
 				<noscript><div>'.$alternateImage.'</div></noscript>
-
 			';
-			// return
-			return $flash;
+			
+			// Strip some whitespaces
+			$content = preg_replace('/[\n\f\t]/', '', $content);
+			
+			// Wrap with additional ID when loaded by AJAX
+			$content = $conf['conf.']['overlaydiv']!=''?'<div id="tx-rlmpflashdetection-pi1">'.$content.'</div>':$content;
+			
+			// Return
+			return $content;
 		}
 
 

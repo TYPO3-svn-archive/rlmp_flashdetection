@@ -1,13 +1,13 @@
 <?php
 
 ########################################################################
-# Extension Manager/Repository config file for ext: "rlmp_flashdetection"
+# Extension Manager/Repository config file for ext "rlmp_flashdetection".
 #
-# Auto generated 26-11-2009 14:50
+# Auto generated 25-02-2010 12:33
 #
 # Manual updates:
-# Only the data in the array - anything else is removed by next write.
-# "version" and "dependencies" must not be touched!
+# Only the data in the array - everything else is removed by next
+# writing. "version" and "dependencies" must not be touched!
 ########################################################################
 
 $EM_CONF[$_EXTKEY] = array(
@@ -40,7 +40,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'suggests' => array(
 		),
 	),
-	'_md5_values_when_last_written' => 'a:18:{s:21:"ext_conf_template.txt";s:4:"6204";s:12:"ext_icon.gif";s:4:"346a";s:17:"ext_localconf.php";s:4:"64fb";s:14:"ext_tables.php";s:4:"dfaa";s:14:"ext_tables.sql";s:4:"6855";s:24:"ext_typoscript_setup.txt";s:4:"74ac";s:41:"icon_tx_rlmpflashdetection_flashmovie.gif";s:4:"1522";s:13:"locallang.xml";s:4:"13c5";s:16:"locallang_db.xml";s:4:"b206";s:7:"tca.php";s:4:"d1a0";s:14:"doc/manual.sxw";s:4:"061b";s:14:"pi1/ce_wiz.gif";s:4:"d2fd";s:39:"pi1/class.tx_rlmpflashdetection_pi1.php";s:4:"b4c4";s:47:"pi1/class.tx_rlmpflashdetection_pi1_wizicon.php";s:4:"6e03";s:13:"pi1/clear.gif";s:4:"cc11";s:17:"pi1/locallang.xml";s:4:"956b";s:16:"res/AC_OETags.js";s:4:"062f";s:19:"res/AC_OETags1.5.js";s:4:"3d6a";}',
+	'_md5_values_when_last_written' => 'a:18:{s:21:"ext_conf_template.txt";s:4:"6204";s:12:"ext_icon.gif";s:4:"346a";s:17:"ext_localconf.php";s:4:"64fb";s:14:"ext_tables.php";s:4:"9ab0";s:14:"ext_tables.sql";s:4:"3d73";s:24:"ext_typoscript_setup.txt";s:4:"74ac";s:41:"icon_tx_rlmpflashdetection_flashmovie.gif";s:4:"1522";s:13:"locallang.xml";s:4:"13c5";s:16:"locallang_db.xml";s:4:"7d70";s:7:"tca.php";s:4:"f1a9";s:14:"doc/manual.sxw";s:4:"48c9";s:14:"pi1/ce_wiz.gif";s:4:"d2fd";s:39:"pi1/class.tx_rlmpflashdetection_pi1.php";s:4:"65d1";s:47:"pi1/class.tx_rlmpflashdetection_pi1_wizicon.php";s:4:"6e03";s:13:"pi1/clear.gif";s:4:"cc11";s:17:"pi1/locallang.xml";s:4:"956b";s:16:"res/AC_OETags.js";s:4:"1744";s:19:"res/AC_OETags1.5.js";s:4:"3d6a";}',
 	'suggests' => array(
 	),
 );
