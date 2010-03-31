@@ -193,7 +193,7 @@
 							"quality", "'.($conf['conf.']['quality']?'low':'high').'",
 							"menu", "'.($conf['conf.']['displaymenu']?'true':'false').'",
 							"base", "'.t3lib_div::getIndpEnv('TYPO3_REQUEST_DIR').$this->basePath.'",
-							'.($conf['conf.']['xmlfile']?(' "flashvars", "'.htmlspecialchars($conf['general.']['xmlFileFlashParamName'].'='.$conf['conf.']['xmlfile']).'",'):'').'
+							'.($conf['conf.']['xmlfile']?(' "flashvars", "'.htmlspecialchars($conf['general.']['xmlFileFlashParamName'].'='.rawurlencode($conf['conf.']['xmlfile'])).'",'):'').'
 							'.$additionalParamsCode.'
 							"allowScriptAccess", "'.htmlspecialchars($conf['general.']['allowScriptAccess']).'",
 							"type", "application/x-shockwave-flash",
