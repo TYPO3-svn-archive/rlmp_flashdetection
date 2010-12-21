@@ -1,13 +1,13 @@
 <?php
 
 ########################################################################
-# Extension Manager/Repository config file for ext: "rlmp_flashdetection"
+# Extension Manager/Repository config file for ext "rlmp_flashdetection".
 #
-# Auto generated 31-03-2010 11:49
+# Auto generated 17-11-2010 14:24
 #
 # Manual updates:
-# Only the data in the array - anything else is removed by next write.
-# "version" and "dependencies" must not be touched!
+# Only the data in the array - everything else is removed by next
+# writing. "version" and "dependencies" must not be touched!
 ########################################################################
 
 $EM_CONF[$_EXTKEY] = array(
@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'This plugin provides a new record type "Flash" with advanced detection routines for most platforms and Flash versions. It features XML parameters as well as direct access from other extensions.',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '1.3.10',
+	'version' => '1.3.11',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
