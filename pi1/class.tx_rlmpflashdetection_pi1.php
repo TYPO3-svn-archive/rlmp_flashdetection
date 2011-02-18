@@ -119,7 +119,7 @@
 			// If configuration via TypoScript is provided, merge the arrays
 			if (is_array($conf)) {
 				$movieConf = t3lib_div::array_merge_recursive_overrule($recordConf, $conf);
-				$stdWrap = array('description','requiresflashversion','overlaydiv','width','height','quality','displaymenu','flashloop','alternatepic','alternatelink','alternatetext','flashmovie','additionalparams','xmlfile');
+				$stdWrap = array('description','requiresflashversion','ajax','width','height','quality','displaymenu','flashloop','alternatepic','alternatelink','alternatetext','flashmovie','additionalparams','xmlfile');
 				// Adding stdWrap to all options
 				foreach ($stdWrap as $parameter) {
 					$movieConf['conf.'][$parameter] = $this->cObj->stdWrap($movieConf['conf.'][$parameter],$movieConf['conf.'][$parameter.'.']);
@@ -172,7 +172,7 @@
 			}
 
 			// Include Adobe Flash Player Version Detection, "normal" mode
-			if ($conf['conf.']['overlaydiv'] == '') {
+			if ($conf['conf.']['ajax'] == 0) {
 				$GLOBALS['TSFE']->additionalHeaderData['tx_rlmpflashdetection'] = '<script type="text/javascript" src="'.t3lib_extMgm::siteRelPath('rlmp_flashdetection').'res/AC_OETags.js"></script>';
 			}
 
@@ -182,12 +182,12 @@
 			// Create output, prepare outout when extension is called by AJAX 
 			$content = '
 				<script type="text/javascript">
-					'.($conf['conf.']['overlaydiv'] == '' ? $arrCDATA[0] : '').'
-					'.($conf['conf.']['overlaydiv'] == '' ? '' : $this->cObj->fileResource(t3lib_extMgm::siteRelPath('rlmp_flashdetection').'res/AC_OETags_ajax.js')).'
+					'.($conf['conf.']['ajax'] == 0 ? $arrCDATA[0] : '').'
+					'.($conf['conf.']['ajax'] == 0 ? '' : $this->cObj->fileResource(t3lib_extMgm::siteRelPath('rlmp_flashdetection').'res/AC_OETags_ajax.js')).'
 					
 					var hasRightVersion = DetectFlashVer('.$conf['conf.']['requiresflashversion'].', 0, 0);
 					if (hasRightVersion && "'.htmlspecialchars(preg_replace('/\.swf$/','',$conf['conf.']['flashmovie'])).'"!="") {
-					'.($conf['conf.']['overlaydiv'] == '' ? 'AC_FL_RunContent (' : 'var flashContent = AC_FL_RunContent (').'
+					'.($conf['conf.']['ajax'] == 0 ? 'AC_FL_RunContent (' : 'var flashContent = AC_FL_RunContent (').'
 							"movie", "'.htmlspecialchars(preg_replace('/\.swf$/','',$conf['conf.']['flashmovie'])).'",
 							"width", "'. ($conf['conf.']['width']?htmlspecialchars($conf['conf.']['width']):'400').'",
 							"height", "'.($conf['conf.']['height']?htmlspecialchars($conf['conf.']['height']):'300').'",
@@ -202,21 +202,21 @@
 							"codebase", "'.htmlspecialchars($conf['general.']['codeBase']).'",
 							"pluginspage", "'.htmlspecialchars($conf['general.']['pluginsPage']).'"
 						);
-						'.($conf['conf.']['overlaydiv'] == '' ? '' : 'document.getElementById("tx-rlmpflashdetection-pi1").innerHTML = flashContent;').'
+						'.($conf['conf.']['ajax'] == 0 ? '' : 'document.getElementById("tx-rlmpflashdetection-pi1").innerHTML = flashContent;').'
 					} else {
 						var alternateContent = \''.str_replace(array('</',"'"), array('<\/',"\\'"), $alternateImage).'\';
-						'.($conf['conf.']['overlaydiv'] == '' ? 'document.write(alternateContent);' : 'document.getElementById("tx-rlmpflashdetection-pi1").innerHTML = alternateContent;').'
+						'.($conf['conf.']['ajax'] == 0 ? 'document.write(alternateContent);' : 'document.getElementById("tx-rlmpflashdetection-pi1").innerHTML = alternateContent;').'
 					}
-				'.($conf['conf.']['overlaydiv'] == '' ? $arrCDATA[1] : '').'
+				'.($conf['conf.']['ajax'] == 0 ? $arrCDATA[1] : '').'
 				</script>
 				<noscript><div>'.$alternateImage.'</div></noscript>
 			';
 			
 			// Strip some whitespaces, prepare outout when extension is called by AJAX
-			$content = $conf['conf.']['overlaydiv'] == '' ? $content : preg_replace('/[\n\f\t]/', '', $content);
+			$content = $conf['conf.']['ajax'] == 0 ? $content : preg_replace('/[\n\f\t]/', '', $content);
 			
 			// Wrap with additional ID when loaded by AJAX
-##			$content = $conf['conf.']['overlaydiv'] == '' ? $content : '<div id="tx-rlmpflashdetection-pi1">'.$content.'</div>';
+			$content = $conf['conf.']['ajax'] == 0 ? $content : '<div id="tx-rlmpflashdetection-pi1">'.$content.'</div>';
 			
 			// Return
 			return $content;

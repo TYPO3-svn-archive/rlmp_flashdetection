@@ -31,9 +31,6 @@
 			'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY)."tca.php",
 			'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY)."icon_tx_rlmpflashdetection_flashmovie.gif",
 		),
-		'feInterface' => Array (
-			'fe_admin_fieldList' => 'description, requiresflashversion, overlaydiv, width, height, quality, displaymenu, flashloop, alternatepic, alternatelink, alternatetext, flashmovie, xmlfile, additionalparams',
-		)
 	);
 
 	t3lib_div::loadTCA('tt_content');

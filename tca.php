@@ -7,7 +7,7 @@
 	$TCA['tx_rlmpflashdetection_flashmovie'] = Array (
 		'ctrl' => $TCA['tx_rlmpflashdetection_flashmovie']['ctrl'],
 		'interface' => Array (
-			'showRecordFieldList' => 'description,requiresflashversion,overlaydiv,width,height,quality,displaymenu,flashloop,alternatepic,alternatelink,alternatetext,flashmovie,xmlfile,additionalparams'
+			'showRecordFieldList' => 'description,requiresflashversion,width,height,quality,displaymenu,flashloop,overlay,alternatepic,alternatelink,alternatetext,flashmovie,xmlfile,additionalparams'
 		),
 		'feInterface' => $TCA['tx_rlmpflashdetection_flashmovie']['feInterface'],
 		'columns' => Array (
@@ -35,15 +35,6 @@
 					'type' => 'input',
 					'size' => '30',
 					'eval' => 'int',
-				)
-			),
-			'overlaydiv' => Array (
-				'exclude' => 1,
-				'label' => 'LLL:EXT:rlmp_flashdetection/locallang_db.php:tx_rlmpflashdetection_flashmovie.overlaydiv',
-				'config' => Array (
-					'type' => 'input',
-					'size' => '30',
-					'eval' => 'trim',
 				)
 			),
 			'width' => Array (
@@ -83,6 +74,13 @@
 			'flashloop' => Array (
 				'exclude' => 1,
 				'label' => 'LLL:EXT:rlmp_flashdetection/locallang_db.php:tx_rlmpflashdetection_flashmovie.flashloop',
+				'config' => Array (
+					'type' => 'check',
+				)
+			),
+			'ajax' => Array (
+				'exclude' => 1,
+				'label' => 'LLL:EXT:rlmp_flashdetection/locallang_db.php:tx_rlmpflashdetection_flashmovie.ajax',
 				'config' => Array (
 					'type' => 'check',
 				)
@@ -170,7 +168,7 @@
 			),
 		),
 		'types' => Array (
-			'0' => Array('showitem' => 'flashmovie;;;;1-1-1, description;;;;2-2-2, requiresflashversion, overlaydiv, width, height, quality, displaymenu, flashloop, additionalparams;;;;3-3-3, xmlfile, alternatepic;;;;4-4-4, alternatelink, alternatetext')
+			'0' => Array('showitem' => 'flashmovie;;;;1-1-1, description;;;;2-2-2, requiresflashversion, width, height, quality, displaymenu, flashloop, ajax, additionalparams;;;;3-3-3, xmlfile, alternatepic;;;;4-4-4, alternatelink, alternatetext')
 		),
 		'palettes' => Array (
 			'1' => Array('showitem' => '')

@@ -30,7 +30,7 @@ CREATE TABLE tx_rlmpflashdetection_flashmovie (
 	endtime int(11) DEFAULT '0' NOT NULL,
 	description varchar(100) DEFAULT '' NOT NULL,
 	requiresflashversion tinyint(4) DEFAULT '0' NOT NULL,
-	overlaydiv varchar(20) DEFAULT '' NOT NULL,
+	ajax tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	width varchar(6) DEFAULT '' NOT NULL,
 	height varchar(6) DEFAULT '' NOT NULL,
 	quality tinyint(4) unsigned DEFAULT '0' NOT NULL,

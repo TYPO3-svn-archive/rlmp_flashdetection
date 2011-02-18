@@ -12,7 +12,7 @@
             <label index="tx_rlmpflashdetection_flashmovie">Flash Movie</label>
             <label index="tx_rlmpflashdetection_flashmovie.description">Name of the Flash movie</label>
             <label index="tx_rlmpflashdetection_flashmovie.requiresflashversion">Required Flash version</label>
-			<label index="tx_rlmpflashdetection_flashmovie.overlaydiv">AJAX request target ID</label>
+			<label index="tx_rlmpflashdetection_flashmovie.ajax">AJAX Mode?</label>
             <label index="tx_rlmpflashdetection_flashmovie.width">Width</label>
             <label index="tx_rlmpflashdetection_flashmovie.height">Height</label>
             <label index="tx_rlmpflashdetection_flashmovie.quality.I.0">High</label>
@@ -33,7 +33,7 @@
             <label index="tx_rlmpflashdetection_flashmovie">Flash Film</label>
             <label index="tx_rlmpflashdetection_flashmovie.description">Name des Flash-Films</label>
             <label index="tx_rlmpflashdetection_flashmovie.requiresflashversion">Erforderliche Flash Version</label>
-			<label index="tx_rlmpflashdetection_flashmovie.overlaydiv">Ziel-ID für AJAX-Aufruf</label>
+			<label index="tx_rlmpflashdetection_flashmovie.ajax">AJAX-Aufruf?</label>
             <label index="tx_rlmpflashdetection_flashmovie.width">Breite</label>
             <label index="tx_rlmpflashdetection_flashmovie.height">Höhe</label>
             <label index="tx_rlmpflashdetection_flashmovie.quality.I.0">Hoch</label>
@@ -54,7 +54,7 @@
             <label index="tx_rlmpflashdetection_flashmovie">Flash elokuva</label>
             <label index="tx_rlmpflashdetection_flashmovie.description">Nimi Flash elokuvalle</label>
             <label index="tx_rlmpflashdetection_flashmovie.requiresflashversion">Tarvittava Flash versio</label>
-			<label index="tx_rlmpflashdetection_flashmovie.overlaydiv">AJAX request target ID</label>
+			<label index="tx_rlmpflashdetection_flashmovie.ajax">AJAX Mode?</label>
             <label index="tx_rlmpflashdetection_flashmovie.width">Leveys</label>
             <label index="tx_rlmpflashdetection_flashmovie.height">Korkeus</label>
             <label index="tx_rlmpflashdetection_flashmovie.quality.I.0">Paras</label>
@@ -75,7 +75,7 @@
             <label index="tx_rlmpflashdetection_flashmovie">Filme em Flash</label>
             <label index="tx_rlmpflashdetection_flashmovie.description">Nome do filme em Flash</label>
             <label index="tx_rlmpflashdetection_flashmovie.requiresflashversion">Versão Flash requerida</label>
-			<label index="tx_rlmpflashdetection_flashmovie.overlaydiv">AJAX request target ID</label>
+			<label index="tx_rlmpflashdetection_flashmovie.ajax">AJAX Mode?</label>
             <label index="tx_rlmpflashdetection_flashmovie.width">Largura</label>
             <label index="tx_rlmpflashdetection_flashmovie.height">Altura</label>
             <label index="tx_rlmpflashdetection_flashmovie.quality.I.0">Alta</label>
