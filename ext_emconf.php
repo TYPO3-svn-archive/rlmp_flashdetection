@@ -11,7 +11,7 @@
 ########################################################################
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'AST Flash (Adobe Detection v1.6/1.5)',
+	'title' => 'AST Flash (Adobe Detection v1.6)',
 	'description' => 'This plugin provides a new record type "Flash" with advanced detection routines for most platforms and Flash versions. It features XML parameters as well as direct access from other extensions.',
 	'category' => 'plugin',
 	'shy' => 0,

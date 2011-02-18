@@ -171,21 +171,23 @@
 				}
 			}
 
-			// Include Adobe Flash Player Version Detection
-//			$GLOBALS['TSFE']->additionalHeaderData ['tx_rlmpflashdetection'] = '<script type="text/JavaScript" src="'.t3lib_extMgm::siteRelPath("rlmp_flashdetection").'res/AC_OETags.js"></script>';
+			// Include Adobe Flash Player Version Detection, "normal" mode
+			if ($conf['conf.']['overlaydiv'] == '') {
+				$GLOBALS['TSFE']->additionalHeaderData['tx_rlmpflashdetection'] = '<script type="text/javascript" src="'.t3lib_extMgm::siteRelPath('rlmp_flashdetection').'res/AC_OETags.js"></script>';
+			}
 
 			// CDATA declaration for "normal" mode - unset declartion when extension is called by AJAX to beware javascript errors in IE! 
 			$arrCDATA = array('/*<![CDATA[*/'.chr(10).'<!--', '//-->'.chr(10).'/*]]>*/');
 
-			// Create output
+			// Create output, prepare outout when extension is called by AJAX 
 			$content = '
 				<script type="text/javascript">
-					'.($conf['conf.']['overlaydiv']==''?$arrCDATA[0]:'').'
-					'.$this->cObj->fileResource(t3lib_extMgm::siteRelPath('rlmp_flashdetection').'res/AC_OETags.js').'
-					var hasOverlayDiv	= "'.$conf['conf.']['overlaydiv'].'";
+					'.($conf['conf.']['overlaydiv'] == '' ? $arrCDATA[0] : '').'
+					'.($conf['conf.']['overlaydiv'] == '' ? '' : $this->cObj->fileResource(t3lib_extMgm::siteRelPath('rlmp_flashdetection').'res/AC_OETags_ajax.js')).'
+					
 					var hasRightVersion = DetectFlashVer('.$conf['conf.']['requiresflashversion'].', 0, 0);
 					if (hasRightVersion && "'.htmlspecialchars(preg_replace('/\.swf$/','',$conf['conf.']['flashmovie'])).'"!="") {
-						var flashContent = AC_FL_RunContent (
+					'.($conf['conf.']['overlaydiv'] == '' ? 'AC_FL_RunContent (' : 'var flashContent = AC_FL_RunContent (').'
 							"movie", "'.htmlspecialchars(preg_replace('/\.swf$/','',$conf['conf.']['flashmovie'])).'",
 							"width", "'. ($conf['conf.']['width']?htmlspecialchars($conf['conf.']['width']):'400').'",
 							"height", "'.($conf['conf.']['height']?htmlspecialchars($conf['conf.']['height']):'300').'",
@@ -200,23 +202,21 @@
 							"codebase", "'.htmlspecialchars($conf['general.']['codeBase']).'",
 							"pluginspage", "'.htmlspecialchars($conf['general.']['pluginsPage']).'"
 						);
-						if (hasOverlayDiv) document.getElementById("tx-rlmpflashdetection-pi1").innerHTML = flashContent;
-							else document.write(flashContent);
+						'.($conf['conf.']['overlaydiv'] == '' ? '' : 'document.getElementById("tx-rlmpflashdetection-pi1").innerHTML = flashContent;').'
 					} else {
 						var alternateContent = \''.str_replace(array('</',"'"), array('<\/',"\\'"), $alternateImage).'\';
-						if (hasOverlayDiv) document.getElementById("tx-rlmpflashdetection-pi1").innerHTML = alternateContent;
-							else document.write(alternateContent);
+						'.($conf['conf.']['overlaydiv'] == '' ? 'document.write(alternateContent);' : 'document.getElementById("tx-rlmpflashdetection-pi1").innerHTML = alternateContent;').'
 					}
-				'.($conf['conf.']['overlaydiv']==''?$arrCDATA[1]:'').'
+				'.($conf['conf.']['overlaydiv'] == '' ? $arrCDATA[1] : '').'
 				</script>
 				<noscript><div>'.$alternateImage.'</div></noscript>
 			';
 			
-			// Strip some whitespaces
-			$content = preg_replace('/[\n\f\t]/', '', $content);
+			// Strip some whitespaces, prepare outout when extension is called by AJAX
+			$content = $conf['conf.']['overlaydiv'] == '' ? $content : preg_replace('/[\n\f\t]/', '', $content);
 			
 			// Wrap with additional ID when loaded by AJAX
-			$content = $conf['conf.']['overlaydiv']!=''?'<div id="tx-rlmpflashdetection-pi1">'.$content.'</div>':$content;
+##			$content = $conf['conf.']['overlaydiv'] == '' ? $content : '<div id="tx-rlmpflashdetection-pi1">'.$content.'</div>';
 			
 			// Return
 			return $content;
