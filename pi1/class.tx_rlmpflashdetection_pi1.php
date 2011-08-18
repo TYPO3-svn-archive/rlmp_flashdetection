@@ -59,7 +59,7 @@
 			} else {
 				$overrideUID = $conf['conf.']['overrideUID'];
 			}
-	
+
 			// Normally we want to get the record of the flashmovie which is selected in the insert plugin content element.
 			// But you may define an uid in your template which overrides this selection.
 			$uid = $this->cObj->data['tx_rlmpflashdetection_flashmovie']?$this->cObj->data['tx_rlmpflashdetection_flashmovie']:$overrideUID;
@@ -119,7 +119,7 @@
 			// If configuration via TypoScript is provided, merge the arrays
 			if (is_array($conf)) {
 				$movieConf = t3lib_div::array_merge_recursive_overrule($recordConf, $conf);
-				$stdWrap = array('description','requiresflashversion','ajax','width','height','quality','displaymenu','flashloop','alternatepic','alternatelink','alternatetext','flashmovie','additionalparams','xmlfile');
+				$stdWrap = array('description','requiresflashversion','ajax','width','height','quality','displaymenu','flashloop','alternatepic','alternatelink','alternatetext','alternatecode','flashmovie','additionalparams','xmlfile');
 				// Adding stdWrap to all options
 				foreach ($stdWrap as $parameter) {
 					$movieConf['conf.'][$parameter] = $this->cObj->stdWrap($movieConf['conf.'][$parameter],$movieConf['conf.'][$parameter.'.']);
@@ -161,6 +161,17 @@
 				}
 			} else $alternateImage	= $reqVersion;
 
+
+			// Use HTML-Code instead of an alternative image
+			if (!empty($conf['conf.']['alternatecode'])) {
+				// replace linebreak due to JavaScript/HTML issues
+				$tmpArr = t3lib_div::trimExplode(chr(10), $conf['conf.']['alternatecode'], 1);
+				foreach($tmpArr as $val) {
+					$tmpAlternatecode .= $val;
+				}
+				$alternateImage = $tmpAlternatecode;
+			}
+
 			// Create HTML / JavaScript code for the additional parameters
 			$additionalParamsCode = '';
 			if ($conf['conf.']['additionalparams'] != '') {
@@ -176,15 +187,15 @@
 				$GLOBALS['TSFE']->additionalHeaderData['tx_rlmpflashdetection'] = '<script type="text/javascript" src="'.t3lib_extMgm::siteRelPath('rlmp_flashdetection').'res/AC_OETags.js"></script>';
 			}
 
-			// CDATA declaration for "normal" mode - unset declartion when extension is called by AJAX to beware javascript errors in IE! 
+			// CDATA declaration for "normal" mode - unset declartion when extension is called by AJAX to beware javascript errors in IE!
 			$arrCDATA = array('/*<![CDATA[*/'.chr(10).'<!--', '//-->'.chr(10).'/*]]>*/');
 
-			// Create output, prepare outout when extension is called by AJAX 
+			// Create output, prepare outout when extension is called by AJAX
 			$content = '
 				<script type="text/javascript">
 					'.($conf['conf.']['ajax'] == 0 ? $arrCDATA[0] : '').'
 					'.($conf['conf.']['ajax'] == 0 ? '' : $this->cObj->fileResource(t3lib_extMgm::siteRelPath('rlmp_flashdetection').'res/AC_OETags_ajax.js')).'
-					
+
 					var hasRightVersion = DetectFlashVer('.$conf['conf.']['requiresflashversion'].', 0, 0);
 					if (hasRightVersion && "'.htmlspecialchars(preg_replace('/\.swf$/','',$conf['conf.']['flashmovie'])).'"!="") {
 					'.($conf['conf.']['ajax'] == 0 ? 'AC_FL_RunContent (' : 'var flashContent = AC_FL_RunContent (').'
@@ -211,13 +222,13 @@
 				</script>
 				<noscript><div>'.$alternateImage.'</div></noscript>
 			';
-			
+
 			// Strip some whitespaces, prepare outout when extension is called by AJAX
 			$content = $conf['conf.']['ajax'] == 0 ? $content : preg_replace('/[\n\f\t]/', '', $content);
-			
+
 			// Wrap with additional ID when loaded by AJAX
 			$content = $conf['conf.']['ajax'] == 0 ? $content : '<div id="tx-rlmpflashdetection-pi1">'.$content.'</div>';
-			
+
 			// Return
 			return $content;
 		}
@@ -229,4 +240,3 @@
 	if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/rlmp_flashdetection/pi1/class.tx_rlmpflashdetection_pi1.php']) {
 		include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/rlmp_flashdetection/pi1/class.tx_rlmpflashdetection_pi1.php']);
 	}
-?>

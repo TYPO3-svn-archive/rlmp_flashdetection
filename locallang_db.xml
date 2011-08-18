@@ -20,9 +20,10 @@
             <label index="tx_rlmpflashdetection_flashmovie.quality">Quality</label>
             <label index="tx_rlmpflashdetection_flashmovie.displaymenu">Display menu?</label>
             <label index="tx_rlmpflashdetection_flashmovie.flashloop">Loop?</label>
-            <label index="tx_rlmpflashdetection_flashmovie.alternatepic">Alternate image (if no Flash plugin available)</label>
-            <label index="tx_rlmpflashdetection_flashmovie.alternatelink">Link (will be wrapped around alternate picture)</label>
+            <label index="tx_rlmpflashdetection_flashmovie.alternatepic">Alternative image (if no Flash plugin available)</label>
+            <label index="tx_rlmpflashdetection_flashmovie.alternatelink">Link (will be wrapped around alternative picture)</label>
 			<label index="tx_rlmpflashdetection_flashmovie.alternatetext">Alt- and Title-TAG text for alternative image</label>
+			<label index="tx_rlmpflashdetection_flashmovie.alternatecode">Alternative text/HTML-code (replaces the alternative image)</label>
             <label index="tx_rlmpflashdetection_flashmovie.flashmovie">Flash file</label>
             <label index="tx_rlmpflashdetection_flashmovie.additionalparams">Additional parameters. Each parameter in one line, name and value separated by comma (eg. 'wmode,transparent')</label>
 			<label index="tx_rlmpflashdetection_flashmovie.xmlfile">XML file you want to pass to the Flash movie.</label>
@@ -44,6 +45,7 @@
             <label index="tx_rlmpflashdetection_flashmovie.alternatepic">Alternatives Bild (wenn kein Flash Plugin erkannt wird)</label>
             <label index="tx_rlmpflashdetection_flashmovie.alternatelink">Link (verlinkt alternatives Bild)</label>
 			<label index="tx_rlmpflashdetection_flashmovie.alternatetext">Alt- und Title-TAG Text für alternatives Bild</label>
+			<label index="tx_rlmpflashdetection_flashmovie.alternatecode">Alternativer Text/HTML-Code (ersetzt das alternative Bild)</label>
             <label index="tx_rlmpflashdetection_flashmovie.flashmovie">Flash-Datei</label>
             <label index="tx_rlmpflashdetection_flashmovie.additionalparams">Zusätzliche Parameter. Jeder Parameter eine Zeile, getrennt durch Komma (z.B. 'wmode,transparent')</label>
 			<label index="tx_rlmpflashdetection_flashmovie.xmlfile">XML-Datei mit Parametern für den Flash Film</label>
@@ -65,6 +67,7 @@
             <label index="tx_rlmpflashdetection_flashmovie.alternatepic">Vaihtoehtoinen kuva (jos Flash ei käytettävissä)</label>
 			<label index="tx_rlmpflashdetection_flashmovie.alternatelink">Link (will be wrapped around alternate picture)</label>
 			<label index="tx_rlmpflashdetection_flashmovie.alternatetext">Alt- and Title-TAG text for alternative image</label>
+			<label index="tx_rlmpflashdetection_flashmovie.alternatecode">Alternative text/HTML-code (replaces the alternative image)</label>
             <label index="tx_rlmpflashdetection_flashmovie.flashmovie">Flash tiedosto</label>
             <label index="tx_rlmpflashdetection_flashmovie.additionalparams">Lisäparametrit. Jokainen parametri omalla rivillään nimi ja arvo erotettu pilkulla (esim. 'wmode,transparent')</label>
 			<label index="tx_rlmpflashdetection_flashmovie.xmlfile">XML file you want to pass to the Flash movie.</label>
@@ -86,6 +89,7 @@
             <label index="tx_rlmpflashdetection_flashmovie.alternatepic">Imagem alternativa (se o plugin do Flash não estiver disponível)</label>
 			<label index="tx_rlmpflashdetection_flashmovie.alternatelink">Link (will be wrapped around alternate picture)</label>
 			<label index="tx_rlmpflashdetection_flashmovie.alternatetext">Alt- and Title-TAG text for alternative image</label>
+			<label index="tx_rlmpflashdetection_flashmovie.alternatecode">Alternative text/HTML-code (replaces the alternative image)</label>
             <label index="tx_rlmpflashdetection_flashmovie.flashmovie">Arquivo flash</label>
             <label index="tx_rlmpflashdetection_flashmovie.additionalparams">Parâmetros adicionais. Cada parâmetro em uma linha, nome e valor separados por vírgula (ex: 'wmode,transparent')</label>
 			<label index="tx_rlmpflashdetection_flashmovie.xmlfile">XML file you want to pass to the Flash movie.</label>

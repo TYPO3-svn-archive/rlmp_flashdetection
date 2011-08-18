@@ -39,6 +39,7 @@ CREATE TABLE tx_rlmpflashdetection_flashmovie (
 	alternatepic blob NOT NULL,
 	alternatelink varchar(255) DEFAULT '' NOT NULL,
 	alternatetext varchar(255) DEFAULT '' NOT NULL,
+	alternatecode text NOT NULL,
 	flashmovie blob NOT NULL,
 	additionalparams text NOT NULL,
 	xmlfile blob NOT NULL,

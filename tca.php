@@ -7,11 +7,11 @@
 	$TCA['tx_rlmpflashdetection_flashmovie'] = Array (
 		'ctrl' => $TCA['tx_rlmpflashdetection_flashmovie']['ctrl'],
 		'interface' => Array (
-			'showRecordFieldList' => 'description,requiresflashversion,width,height,quality,displaymenu,flashloop,overlay,alternatepic,alternatelink,alternatetext,flashmovie,xmlfile,additionalparams'
+			'showRecordFieldList' => 'description,requiresflashversion,width,height,quality,displaymenu,flashloop,overlay,alternatepic,alternatelink,alternatetext,alternatecode,flashmovie,xmlfile,additionalparams'
 		),
 		'feInterface' => $TCA['tx_rlmpflashdetection_flashmovie']['feInterface'],
 		'columns' => Array (
-			't3ver_label' => array (        
+			't3ver_label' => array (
 	            'label'  => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
 	            'config' => array (
 	                'type' => 'input',
@@ -166,12 +166,21 @@
 					'rows' => '6',
 				)
 			),
+			'alternatecode' => Array (
+				'exclude' => 1,
+				'label' => 'LLL:EXT:rlmp_flashdetection/locallang_db.php:tx_rlmpflashdetection_flashmovie.alternatecode',
+				'config' => Array (
+					'type' => 'text',
+					'wrap' => 'OFF',
+					'cols' => '50',
+					'rows' => '6',
+				)
+			),
 		),
 		'types' => Array (
-			'0' => Array('showitem' => 'flashmovie;;;;1-1-1, description;;;;2-2-2, requiresflashversion, width, height, quality, displaymenu, flashloop, ajax, additionalparams;;;;3-3-3, xmlfile, alternatepic;;;;4-4-4, alternatelink, alternatetext')
+			'0' => Array('showitem' => 'flashmovie;;;;1-1-1, description;;;;2-2-2, requiresflashversion, width, height, quality, displaymenu, flashloop, ajax, additionalparams;;;;3-3-3, xmlfile, alternatepic;;;;4-4-4, alternatelink, alternatetext, alternatecode')
 		),
 		'palettes' => Array (
 			'1' => Array('showitem' => '')
 		)
 	);
-?>
